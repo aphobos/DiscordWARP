@@ -48,4 +48,4 @@ echo "${conf}"
 [ -t 1 ] && echo "########### КОНЕЦ КОНФИГА ###########"
 
 conf_base64=$(echo -n "${conf}" | base64 -w 0)
-echo "Скачать конфиг файлом: https://aphobos.github.io/amnesiawg_for_discord/downloader.html?filename=WARP.conf&content=${conf_base64}"
+echo "Скачать конфиг файлом: https://aphobos.github.io/amnesiawg_for_discord/downloader.html?filename=DiscordWARP.conf&content=${conf_base64}"
