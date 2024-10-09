@@ -39,8 +39,7 @@ DNS = 1.1.1.1, 2606:4700:4700::1111, 1.0.0.1, 2606:4700:4700::1001
 
 [Peer]
 PublicKey = ${peer_pub}
-AllowedIPs = 0.0.0.0/1, 128.0.0.0/1, ::/1, 8000::/1
-Endpoint = ${peer_endpoint}:${port}
+AllowedIPs = 162.159.0.0/16, 162.216.0.0/16, 162.222.0.0/16Endpoint = ${peer_endpoint}:${port}
 EOM
 )
 
@@ -51,4 +50,4 @@ echo "${conf}"
 [ -t 1 ] && echo "########### КОНЕЦ КОНФИГА ###########"
 
 conf_base64=$(echo -n "${conf}" | base64 -w 0)
-echo "Скачать конфиг файлом: https://immalware.github.io/downloader.html?filename=WARP.conf&content=${conf_base64}"
+echo "Скачать конфиг файлом: https://aphobos.github.io/amnesiawg_for_discord/downloader.html?filename=WARP_Discord.conf&content=${conf_base64}"
