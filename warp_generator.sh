@@ -1,6 +1,9 @@
 #!/bin/bash
 
 clear
+mkdir -p ~/.cloudshell && touch ~/.cloudshell/no-apt-get-warning
+echo "Установка зависимостей..."
+sudo apt-get update -y --fix-missing && sudo apt-get install wireguard-tools jq -y --fix-missing
 
 priv="${1:-$(wg genkey)}"
 pub="${2:-$(echo "${priv}" | wg pubkey)}"
