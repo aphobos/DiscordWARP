@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WARP Config Downloader</title>
+</head>
+<body>
+    <h1>Download WARP Config File</h1>
+    <a id="download-link" href="#">Click here to download</a>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const filename = urlParams.get('filename');
+        const content = urlParams.get('content');
+
+        if (filename && content) {
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;base64,' + content);
+            element.setAttribute('download', filename);
+            document.getElementById('download-link').href = element.href;
+            document.getElementById('download-link').download = filename;
+        } else {
+            document.getElementById('download-link').textContent = 'Missing file information';
+        }
+    </script>
+</body>
+</html>
