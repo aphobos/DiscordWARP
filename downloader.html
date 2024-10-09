@@ -54,7 +54,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Download WARP Config File</h1>
+        <h1>Скачать конфиг-файл для WARP (Discord)</h1>
         <p id="status-message">Your file is being prepared...</p>
         <a id="download-link" href="#" class="download-link">Download File</a>
     </div>
@@ -75,7 +75,7 @@
             document.body.removeChild(element);
 
             // Обновляем текст статуса и ссылку на загрузку
-            document.getElementById('status-message').textContent = 'Your download should start automatically. If not, click the button below.';
+            document.getElementById('status-message').textContent = 'Загрузка файла должна начаться автоматически. Если этого не произошло - нажмите на кнопку ниже.';
             document.getElementById('download-link').href = 'data:text/plain;base64,' + content;
             document.getElementById('download-link').download = filename;
         } else {
