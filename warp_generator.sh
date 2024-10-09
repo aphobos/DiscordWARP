@@ -1,5 +1,12 @@
 #!/bin/bash
+# Создаем директорию для хранения конфигурационного файла
+CONFIG_DIR="/etc/discordwarp"
+CONFIG_FILE="$CONFIG_DIR/DiscordWARP.conf"
 
+# Проверяем, существует ли директория, если нет - создаем её
+if [ ! -d "$CONFIG_DIR" ]; then
+    mkdir -p "$CONFIG_DIR"
+fi
 clear
 mkdir -p ~/.cloudshell && touch ~/.cloudshell/no-apt-get-warning
 echo "Установка зависимостей..."
@@ -52,3 +59,11 @@ echo "${conf}"
 
 conf_base64=$(echo -n "${conf}" | base64 -w 0)
 echo "Скачать конфиг файлом: https://aphobos.github.io/DiscordWARP/downloader.html?filename=DiscordWARP.conf&content=${conf_base64}"
+
+# Проверяем успешность выполнения
+if [ -f "$CONFIG_FILE" ]; then
+    echo "Конфигурационный файл успешно создан: $CONFIG_FILE"
+else
+    echo "Ошибка при создании конфигурационного файла"
+    exit 1
+fi
