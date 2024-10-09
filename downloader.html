@@ -6,22 +6,26 @@
     <title>WARP Config Downloader</title>
 </head>
 <body>
-    <h1>Download WARP Config File</h1>
-    <a id="download-link" href="#">Click here to download</a>
-
     <script>
+        // Получение параметров из URL
         const urlParams = new URLSearchParams(window.location.search);
         const filename = urlParams.get('filename');
         const content = urlParams.get('content');
 
         if (filename && content) {
+            // Создание элемента ссылки для скачивания файла
             const element = document.createElement('a');
             element.setAttribute('href', 'data:text/plain;base64,' + content);
             element.setAttribute('download', filename);
-            document.getElementById('download-link').href = element.href;
-            document.getElementById('download-link').download = filename;
+
+            // Добавляем ссылку в DOM (невидимо для пользователя) и "кликаем" по ней
+            document.body.appendChild(element);
+            element.click();
+
+            // Удаляем элемент после скачивания
+            document.body.removeChild(element);
         } else {
-            document.getElementById('download-link').textContent = 'Missing file information';
+            document.body.innerHTML = '<h1>Error: Missing file information</h1>';
         }
     </script>
 </body>
