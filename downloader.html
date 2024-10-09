@@ -4,28 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WARP Config Downloader</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 20px 30px;
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #555;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        .download-link {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        .download-link:hover {
+            background-color: #0056b3;
+        }
+        .error-message {
+            color: #d9534f;
+            font-size: 18px;
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <h1>Download WARP Config File</h1>
+        <p id="status-message">Your file is being prepared...</p>
+        <a id="download-link" href="#" class="download-link">Download File</a>
+    </div>
+
     <script>
-        // Получение параметров из URL
         const urlParams = new URLSearchParams(window.location.search);
         const filename = urlParams.get('filename');
         const content = urlParams.get('content');
 
         if (filename && content) {
-            // Создание элемента ссылки для скачивания файла
             const element = document.createElement('a');
             element.setAttribute('href', 'data:text/plain;base64,' + content);
             element.setAttribute('download', filename);
 
-            // Добавляем ссылку в DOM (невидимо для пользователя) и "кликаем" по ней
+            // Автоматический клик для загрузки файла
             document.body.appendChild(element);
             element.click();
-
-            // Удаляем элемент после скачивания
             document.body.removeChild(element);
+
+            // Обновляем текст статуса и ссылку на загрузку
+            document.getElementById('status-message').textContent = 'Your download should start automatically. If not, click the button below.';
+            document.getElementById('download-link').href = 'data:text/plain;base64,' + content;
+            document.getElementById('download-link').download = filename;
         } else {
-            document.body.innerHTML = '<h1>Error: Missing file information</h1>';
+            document.getElementById('status-message').textContent = 'Error: Missing file information';
+            document.getElementById('status-message').classList.add('error-message');
+            document.getElementById('download-link').style.display = 'none';
         }
     </script>
 </body>
