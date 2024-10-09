@@ -36,7 +36,8 @@ DNS = 1.1.1.1, 2606:4700:4700::1111, 1.0.0.1, 2606:4700:4700::1001
 
 [Peer]
 PublicKey = ${peer_pub}
-AllowedIPs = 162.159.0.0/16, 162.216.0.0/16, 162.222.0.0/16Endpoint = ${peer_endpoint}:${port}
+AllowedIPs = 162.159.0.0/16, 162.216.0.0/16, 162.222.0.0/16
+Endpoint = ${peer_endpoint}:${port}
 EOM
 )
 
